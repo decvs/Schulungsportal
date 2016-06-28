@@ -1,6 +1,7 @@
 ﻿using Schulungsportal.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -41,6 +42,35 @@ namespace Schulungsportal.Data
         {
             var result = this._database.Participants.Add(participant);
             this._database.SaveChanges();
+        }
+
+        internal Participant GetById(int id)
+        {
+            var part = this._database.Participants.Find(id);
+            return part;
+        }
+
+        internal void Delete(int id)
+        {
+            var part = GetById(id);
+            if (part != null)
+            {
+                this._database.Participants.Remove(part);
+                this._database.SaveChanges();
+            }
+        }
+
+        internal void Update(Participant model)
+        {
+            //if (_database.Entry(model).State == EntityState.Detached)
+            //{
+            //    _database.Participants.Attach(model);
+            //    _database.Entry(model).State = EntityState.Modified;
+            //}
+
+            _database.Entry(model).State = EntityState.Modified;
+
+            _database.SaveChanges();
         }
     }
 }

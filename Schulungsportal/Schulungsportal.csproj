@@ -116,6 +116,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ParticipantsController.cs" />
+    <Compile Include="Data\Email.cs" />
     <Compile Include="Data\Mappings\ParticipantMappings.cs" />
     <Compile Include="Data\TpContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -130,6 +131,10 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Participants\Create.cshtml" />
+    <Content Include="Views\Participants\Delete.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Participants\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

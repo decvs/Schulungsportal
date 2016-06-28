@@ -1,0 +1,8 @@
+﻿@model Schulungsportal.Data.Email
+<div class="form-group">
+    <label for="@Html.IdForModel()" class="control-label col-md-2">@Html.DisplayNameForModel()</label>
+    <div class="col-md-10">
+        <input type="email" name="@Html.NameForModel()" id="@Html.IdForModel()" value="@Html.ValueForModel()" class="form-control" placeholder="somebody@somewhere.com"/>
+        <div class="text-danger">@Html.ValidationMessageFor(m=>m)</div>
+    </div>
+</div>

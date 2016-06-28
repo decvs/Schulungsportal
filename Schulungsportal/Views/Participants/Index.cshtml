@@ -4,32 +4,22 @@
     ViewBag.Title = "Index";
 }
 
-<div class="jumbotron">
-    <h2>Index</h2>
-</div>
 
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-    <a href="@Url.Action("Create", "Participants")" class="btn btn-warning">
-        Neu<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-    </a>
-
-</p>
 <table class="table table-bordered table-condensed table-striped table-hover">
+
     <tr>
-        <th>Id</th>
+        <th class="visible-lg visible-md">Id</th>
         <th>Vorname</th>
         <th>Nachname</th>
         <th>Email</th>
-        <th>Webseite</th>
-        <th>Firma</th>
+        <th class="visible-lg visible-md">Webseite</th>
+        <th class="visible-lg visible-md">Firma</th>
         <th>Operation</th>
     </tr>
 
 @foreach (var item in Model.Participants) {
     <tr>
-        <td>
+        <td class="visible-lg visible-md">
             @item.Id
         </td>
         <td>
@@ -42,16 +32,16 @@
             <a href="mailto:@item.Email">
                 <span class="glyphicon glyphicon-envelope"></span>
             </a></td>
-        <td>
+        <td class="visible-lg visible-md">
             <a href="http://@item.Website">
                 <span class="glyphicon glyphicon-piggy-bank"></span>
             </a>
         </td>
-        <td>
+        <td class="visible-lg visible-md">
             @item.Company
         </td>
          <td>  
-             <a href="@Url.Action("Edit", "Participants", new  { id=item.Id })" class="btn btn-warning">
+             <a href="@Url.Action("Update", "Participants", new { id = item.Id })" class="btn btn-warning">
                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
              </a>
              <a href="@Url.Action("Details", "Participants", new  { id=item.Id })" class="btn btn-warning">

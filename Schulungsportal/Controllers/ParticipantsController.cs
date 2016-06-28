@@ -38,7 +38,52 @@ namespace Schulungsportal.Controllers
         [HttpPost]
         public ActionResult Create(Participant model)
         {
-            _repository.Insert(model);
+            var isModelValid = ModelState.IsValid;
+            if (isModelValid)
+            {
+                _repository.Insert(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+
+        [HttpGet]
+        public ActionResult Update(int? id)
+        {
+            if (id.HasValue)
+            {
+                var part = _repository.GetById(id.Value);
+                return View(part);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Update(Participant model)
+        {
+            var isModelValid = ModelState.IsValid;
+            if (isModelValid)
+            {
+                _repository.Update(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id.HasValue)
+            {
+                var part = _repository.GetById(id.Value);
+                return View(part);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteConfirmed(int id)
+        {
+            _repository.Delete(id);
             return RedirectToAction("Index");
         }
 	}
