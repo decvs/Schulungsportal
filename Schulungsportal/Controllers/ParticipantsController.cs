@@ -1,4 +1,6 @@
-﻿using Schulungsportal.ViewModel;
+﻿using Schulungsportal.Data;
+using Schulungsportal.Models;
+using Schulungsportal.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,19 @@ namespace Schulungsportal.Controllers
                 Participants = _repository.Query.ToList()
             };
             return View(viewmodel);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Participant model)
+        {
+            _repository.Insert(model);
+            return RedirectToAction("Index");
         }
 	}
 }
