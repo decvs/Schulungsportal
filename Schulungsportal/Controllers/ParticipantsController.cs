@@ -3,6 +3,7 @@ using Schulungsportal.Models;
 using Schulungsportal.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,13 +21,23 @@ namespace Schulungsportal.Controllers
         }
         //
         // GET: /Participants/
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            var viewmodel = new ParticipantViewModel
+            var pageSize = 2;
+            var viewModel = new ParticipantViewModel
             {
-                Participants = _repository.Query.ToList()
+                Participants = _repository.Query.OrderBy(p => p.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
+                Pagination = new PaginationViewModel
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = pageSize,
+                    TotalCount = _repository.Query.Count(),
+                    Controller = RouteData.Values["Controller"] as string,
+                    Action = RouteData.Values["Action"] as string
+                }
             };
-            return View(viewmodel);
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -36,11 +47,19 @@ namespace Schulungsportal.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Participant model)
+        public ActionResult Create(Participant model, HttpPostedFileBase upload)
         {
             var isModelValid = ModelState.IsValid;
             if (isModelValid)
             {
+                if (upload != null && upload.ContentLength != 0)
+                {
+                    using (var reader = new BinaryReader(upload.InputStream))
+                    {
+                        model.ProfilePicture = reader.ReadBytes(upload.ContentLength);
+                        model.ProfilePictureContentType = upload.ContentType;
+                    }
+                }
                 _repository.Insert(model);
                 return RedirectToAction("Index");
             }
@@ -60,11 +79,20 @@ namespace Schulungsportal.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(Participant model)
+        public ActionResult Update(Participant model, HttpPostedFileBase upload)
         {
             var isModelValid = ModelState.IsValid;
             if (isModelValid)
             {
+                if (upload != null && upload.ContentLength != 0)
+                {
+                    using (var reader = new BinaryReader(upload.InputStream))
+                    {
+                        model.ProfilePicture = reader.ReadBytes(upload.ContentLength);
+                        model.ProfilePictureContentType = upload.ContentType;
+                    }
+                }
+
                 _repository.Update(model);
                 return RedirectToAction("Index");
             }
@@ -85,6 +113,26 @@ namespace Schulungsportal.Controllers
         {
             _repository.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Gallery(int page=1)
+        {
+            var pageSize = 2;
+            var viewModel = new ParticipantViewModel
+            {
+                Participants = _repository.Query.OrderBy(p => p.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
+                Pagination = new PaginationViewModel
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = pageSize,
+                    TotalCount = _repository.Query.Count(),
+                    Controller = RouteData.Values["Controller"] as string,
+                    Action = RouteData.Values["Action"] as string
+                }
+            };
+
+
+            return View(viewModel);
         }
 	}
 }

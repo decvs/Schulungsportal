@@ -1,27 +1,55 @@
-﻿<html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trainingsportal - @ViewBag.Title</title>
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" />
+    
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+    </script>
 </head>
 <body>
     <div class="container">
         <div class="jumbotron">
             <h1>Hallo Welt!</h1>
         </div>
-        <nav>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <a href="@Url.Action("Create", "Participants")" class="btn btn-warning">
-                        Neu<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                    </a>
-                </li>
-            </ul>
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Menü</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Index", "Participants")">Teilnehmer</a></li>
+                        <li><a href="@Url.Action("Index", "Link")">Links</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
 
+        @RenderSection("ModuleMenu", false)
 
         <div class="panel panel-default">
             <div class="panel-heading">

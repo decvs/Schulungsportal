@@ -1,19 +1,20 @@
-﻿@model Schulungsportal.Models.Participant
+﻿@model Schulungsportal.Models.Post
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Url editieren";
 }
 
 @section ModuleMenu
 {
-    @Html.Partial("ParticipantsMenu", 0)
+    @Html.Partial("LinksMenu", 0)
 }
 
 
-@using (Html.BeginForm("Create", "Participants", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Update", "Participants", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
     
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
     <div class="form-horizontal">
 
         @if (ViewData.ModelState.IsValid == false) { 
@@ -28,19 +29,29 @@
             <div class="col-md-6">
                 @Html.EditorFor(model => model.Firstname)
                 @Html.EditorFor(model => model.Lastname)
-
+                
                 <div class="form-group">
                     <label for="upload" class="control-label col-md-2">Avatar:</label>
                     <div class="col-md-10">
                         <input type="file" name="upload" id="upload" class="form-control" />
                     </div>
                 </div>
+                @{
+                    if (Model.ProfilePicture != null && Model.ProfilePicture.Length > 0)
+                    {
+                        var base64 = Convert.ToBase64String(Model.ProfilePicture);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        <img src="@imgSrc" />
+                    }
+                    
+                 }
+
+                
             </div>
             <div class="col-md-6">
                 @Html.EditorFor(model => model.Email)
                 @Html.EditorFor(model => model.Website)
                 @Html.EditorFor(model => model.Company)
-                
             </div>
         </div>
 
@@ -51,11 +62,3 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

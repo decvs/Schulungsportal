@@ -21,5 +21,8 @@ namespace Schulungsportal.Models
         public string Email{ get; set; }
         public string Website { get; set; }
         public string Company { get; set; }
+        public byte[] ProfilePicture { get; set; }
+
+        public string ProfilePictureContentType { get; set; }
     }
 }

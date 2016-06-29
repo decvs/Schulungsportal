@@ -87,6 +87,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Images\defaultprofilepicture1.jpg" />
+    <Content Include="Content\Images\defaultprofilepicture2.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -115,16 +118,39 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\LinkController.cs" />
     <Compile Include="Controllers\ParticipantsController.cs" />
+    <Compile Include="Controllers\PostViewModel.cs" />
     <Compile Include="Data\Email.cs" />
     <Compile Include="Data\Mappings\ParticipantMappings.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Data\PostsRepository.cs" />
     <Compile Include="Data\TpContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606281442308_InitialCreate.cs" />
+    <Compile Include="Migrations\201606281442308_InitialCreate.Designer.cs">
+      <DependentUpon>201606281442308_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606290722142_bla.cs" />
+    <Compile Include="Migrations\201606290722142_bla.Designer.cs">
+      <DependentUpon>201606290722142_bla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606290847190_bla2.cs" />
+    <Compile Include="Migrations\201606290847190_bla2.Designer.cs">
+      <DependentUpon>201606290847190_bla2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606291420042_posts.cs" />
+    <Compile Include="Migrations\201606291420042_posts.Designer.cs">
+      <DependentUpon>201606291420042_posts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Participant.cs" />
     <Compile Include="Data\ParticipantRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\LinkViewModel.cs" />
+    <Compile Include="ViewModel\PaginationViewModel.cs" />
     <Compile Include="ViewModel\ParticipantViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +161,14 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
     <Content Include="Views\Participants\Update.cshtml" />
+    <Content Include="Views\Participants\Gallery.cshtml" />
+    <Content Include="Views\Shared\ParticipantsMenu.cshtml" />
+    <Content Include="Views\Shared\Pagination.cshtml" />
+    <Content Include="Views\Shared\LinksMenu.cshtml" />
+    <Content Include="Views\Link\Index.cshtml" />
+    <Content Include="Views\Link\Create.cshtml" />
+    <Content Include="Views\Link\Update.cshtml" />
+    <Content Include="Views\Link\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -144,6 +178,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201606281442308_InitialCreate.resx">
+      <DependentUpon>201606281442308_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606290722142_bla.resx">
+      <DependentUpon>201606290722142_bla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606290847190_bla2.resx">
+      <DependentUpon>201606290847190_bla2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606291420042_posts.resx">
+      <DependentUpon>201606291420042_posts.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
