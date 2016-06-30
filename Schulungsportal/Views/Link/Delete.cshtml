@@ -1,12 +1,12 @@
-﻿@model Schulungsportal.Models.Participant
+﻿@model Schulungsportal.Models.Post
 
 @{
-    ViewBag.Title = "Teilnehmer " + @Model.Firstname +" " + @Model.Lastname+" löschen";
+    ViewBag.Title = "Link: " + @Model.Title + " löschen";
 }
 
 @section ModuleMenu
 {
-    @Html.Partial("ParticipantsMenu", 0)
+    @Html.Partial("LinksMenu", 0)
 }
 
 
@@ -18,43 +18,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Firstname)
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Firstname)
+            @Html.DisplayFor(model => model.Title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Lastname)
+            @Html.DisplayNameFor(model => model.Uri)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Lastname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Website)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Website)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Company)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Company)
+            @Html.DisplayFor(model => model.Uri)
         </dd>
 
     </dl>
@@ -62,8 +38,8 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
        
-        <a href="@Url.Action("Index", "Participants")" class="btn btn-info">Nee lass mal <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-        <a href="@Url.Action("DeleteConfirmed", "Participants", new { id = Model.Id })" class="btn btn-warning">Klar weg damit <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <a href="@Url.Action("Index", "Links")" class="btn btn-info">Nee lass mal <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+        <a href="@Url.Action("DeleteConfirmed", "Link", new { id = Model.Id })" class="btn btn-warning">Klar weg damit <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
         </a>
     }
 </div>

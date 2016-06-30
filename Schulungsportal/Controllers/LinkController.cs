@@ -9,14 +9,15 @@ using System.Web.Mvc;
 
 namespace Schulungsportal.Controllers
 {
+    [Authorize]
     public class LinkController : Controller
     {
 
-        private readonly PostsRepository _repository;
+        private readonly Repository<Post> _repository;
 
         public LinkController()
         {
-            _repository = new PostsRepository();
+            _repository = new Repository<Post>();
         }
         //
         // GET: /Link/

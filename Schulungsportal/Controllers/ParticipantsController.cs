@@ -10,14 +10,15 @@ using System.Web.Mvc;
 
 namespace Schulungsportal.Controllers
 {
+    [Authorize]
     public class ParticipantsController : Controller
     {
 
-        private readonly ParticipantRepository _repository;
+        private readonly Repository<Participant> _repository;
 
         public ParticipantsController()
         {
-            _repository = new ParticipantRepository();
+            _repository = new Repository<Participant>();
         }
         //
         // GET: /Participants/

@@ -17,6 +17,7 @@ namespace Schulungsportal.Data.Mappings
 
             Property(p => p.Id).HasColumnName("ID").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(p => p.Firstname).HasMaxLength(255).HasColumnName("Firstname").HasColumnOrder(1);
+            
         }
     }
 }

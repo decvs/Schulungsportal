@@ -87,6 +87,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\noprofile.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Images\defaultprofilepicture1.jpg" />
     <Content Include="Content\Images\defaultprofilepicture2.jpg" />
@@ -117,14 +118,34 @@
     <Content Include="Views\Participants\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\MyMembershipProvider.cs" />
+    <Compile Include="Account\HotdogRoleProvider.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LinkController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ParticipantsController.cs" />
     <Compile Include="Controllers\PostViewModel.cs" />
     <Compile Include="Data\Email.cs" />
+    <Compile Include="Migrations\201606301221581_login.cs" />
+    <Compile Include="Migrations\201606301221581_login.Designer.cs">
+      <DependentUpon>201606301221581_login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606301227441_login1.cs" />
+    <Compile Include="Migrations\201606301227441_login1.Designer.cs">
+      <DependentUpon>201606301227441_login1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606301245495_login2.cs" />
+    <Compile Include="Migrations\201606301245495_login2.Designer.cs">
+      <DependentUpon>201606301245495_login2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606301255232_login21.cs" />
+    <Compile Include="Migrations\201606301255232_login21.Designer.cs">
+      <DependentUpon>201606301255232_login21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IIdentifyableEntity.cs" />
     <Compile Include="Data\Mappings\ParticipantMappings.cs" />
+    <Compile Include="Data\Repository.cs" />
     <Compile Include="Models\Post.cs" />
-    <Compile Include="Data\PostsRepository.cs" />
     <Compile Include="Data\TpContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -147,11 +168,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Participant.cs" />
-    <Compile Include="Data\ParticipantRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Sha1Hasher.cs" />
     <Compile Include="ViewModel\LinkViewModel.cs" />
+    <Compile Include="ViewModel\LoginUserViewModel.cs" />
     <Compile Include="ViewModel\PaginationViewModel.cs" />
     <Compile Include="ViewModel\ParticipantViewModel.cs" />
+    <Compile Include="ViewModel\RegisterUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -169,6 +192,10 @@
     <Content Include="Views\Link\Create.cshtml" />
     <Content Include="Views\Link\Update.cshtml" />
     <Content Include="Views\Link\Delete.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LayoutAccount.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SecureString.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -191,6 +218,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606291420042_posts.resx">
       <DependentUpon>201606291420042_posts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606301221581_login.resx">
+      <DependentUpon>201606301221581_login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606301227441_login1.resx">
+      <DependentUpon>201606301227441_login1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606301245495_login2.resx">
+      <DependentUpon>201606301245495_login2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606301255232_login21.resx">
+      <DependentUpon>201606301255232_login21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
